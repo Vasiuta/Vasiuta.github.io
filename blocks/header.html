@@ -1,0 +1,45 @@
+<div th:fragment="header" >
+
+    <header th:style="'background-image:url(' + @{/images/6.png} + '); background-repeat: no-repeat, repeat; background-size: cover;'"
+         class="d-flex flex-column flex-md-row align-items-center pb-0 pt-3 mb-4 border-bottom border-5">
+
+<!--        <img th:src="@{/images/1.jpeg}">-->
+        <a href="/" class="d-flex align-items-center text-white text-decoration-none">
+            <span class="fs-4 ">Ghosty`s page</span>
+        </a>
+
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a th:classappend="${active}" class="text-white me-3 py-2 text-decoration-none nav-link" href="/">Main</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="text-white me-3 py-2 text-decoration-none nav-link dropdown-toggle q1" href="#" data-toggle="dropdown">Articles</a>
+
+                    <div class="dropdown-menu">
+                        <a class="q2 dropdown-item" href="/realstories">Real stories</a>
+                        <a class="q2 dropdown-item" href="/scarystories">Scary stories</a>
+                        <a class="q2 dropdown-item" href="/funnystories">Funny stories</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="text-white me-3 py-2 text-decoration-none nav-link dropdown-toggle q1" href="#" data-toggle="dropdown">Staff</a>
+
+                    <div class="dropdown-menu">
+                        <a class="q2 dropdown-item" href="#">Rubick`s cubes</a>
+                        <a class="q2 dropdown-item" href="#">Books</a>
+                        <a class="q2 dropdown-item" href="#">Table games</a>
+                        <a class="q2 dropdown-item" href="#">Technique</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="text-white me-3 py-2 text-decoration-none nav-link" href="/about">About Ghosty</a>
+                </li>
+            <li class="nav-item">
+                <a class="text-white me-3 py-2 text-decoration-none nav-link" href="/about">Log in</a>
+            </li>
+        </ul>
+        </nav>
+    </header>
+
+</div>
