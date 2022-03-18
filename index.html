@@ -44,6 +44,15 @@
       width: 200px;
     }
 
+    #cb {
+      border-style: outset;
+      padding-top: 20%;
+      padding-bottom: 20%;
+      background-color: black;
+      color: aliceblue;
+      border-color: aliceblue;
+    }
+
   </style>
 </head>
 <body>
@@ -67,10 +76,13 @@
         <li><a href="/contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/createacc"><span></span> Create Account</a></li>
+        <li><a id="cb" href="/info">CB</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/createacc"><span></span> Create Account</a></li>
       </ul>
     </div>
   </div>
@@ -126,6 +138,26 @@
             </a>
           </div>
         </div>
+      </div>
+      <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Error!</strong> A problem has been occurred while submitting your data.
+      </div>
+      <div class="alert alert-danger fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Error!</strong> You are not logged in. Firstly log in.
+      </div>
+      <div class="alert alert-warning fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Error!</strong> Can`t find this user.
+      </div>
+      <div class="alert alert-warning fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Error!</strong> You can`t do it. You are not manager.
+      </div>
+      <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Success!</strong> The process was successful.
       </div>
     </div>
     <div class="col-sm-2 sidenav">
