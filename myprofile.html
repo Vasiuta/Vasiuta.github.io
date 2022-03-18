@@ -44,6 +44,31 @@
       width: 200px;
     }
 
+    #hrhr {
+      margin-top: 30px;
+      border: none;
+      border-top: 3px double #333;
+      color: #333;
+      overflow: visible;
+      text-align: center;
+      height: 5px;
+    }
+
+    #hrhr:after {
+      background: #fff;
+      border: solid;
+      border-color: #333333;
+      content: 'account';
+      padding: 0 4px;
+      position: relative;
+      top: -13px;
+    }
+
+    .btnlogout {
+      margin-bottom: 15px;
+      padding: 3px;
+    }
+
   </style>
 </head>
 <body>
@@ -96,6 +121,12 @@
           <h5>LastName: lastname</h5>
         </div>
       </div>
+        <hr id="hrhr">
+        <div class="container-fluid text-center">
+          <a class="col-sm-3 btn btn-warning btnlogout" href="/updateprofile" role="button">Update Profile</a>
+          <div class="col-sm-6"></div>
+          <a class="col-sm-3 btn btn-default btnlogout" role="button">Logout</a>
+        </div>
       </div>
     </div>
     <div class="col-sm-2 sidenav">
