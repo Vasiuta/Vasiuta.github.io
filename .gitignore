@@ -112,7 +112,7 @@ env.bak/
 venv.bak/
 Pipfile/
 .pytest_cache
-.idea
+idea/
 # Spyder project settings
 .spyderproject
 .spyproject
