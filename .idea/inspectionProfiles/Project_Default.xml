@@ -1,0 +1,27 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="2">
+            <item index="0" class="java.lang.String" itemvalue="fragment" />
+            <item index="1" class="java.lang.String" itemvalue="col-sm-10" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="list.__div__" />
+          <option value="schemas.UsersSchema.__getitem__" />
+          <option value="str.as_dict" />
+          <option value="schemas.CreditSchema.__getitem__" />
+          <option value="tuple.__neg__" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
