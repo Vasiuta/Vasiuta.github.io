@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa4fd2a-e859-4a96-b5da-bc529b2dc3a4" name="Changes" comment="small screen">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="1fa4fd2a-e859-4a96-b5da-bc529b2dc3a4" name="Changes" comment="pp project" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,7 +125,7 @@
       <workItem from="1649658262706" duration="422000" />
       <workItem from="1649658689484" duration="3616000" />
       <workItem from="1649663916498" duration="13000" />
-      <workItem from="1649663974659" duration="1896000" />
+      <workItem from="1649663974659" duration="2104000" />
     </task>
     <task id="LOCAL-00001" summary="starting a proj">
       <created>1646360819623</created>
@@ -423,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647643489128</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="pp project">
+      <created>1649667717407</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1649667717407</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -466,7 +471,8 @@
     <MESSAGE value="CB" />
     <MESSAGE value="no commented code" />
     <MESSAGE value="small screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="small screen" />
+    <MESSAGE value="pp project" />
+    <option name="LAST_COMMIT_MESSAGE" value="pp project" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Vasiuta_github_io$Main.coverage" NAME="Main Coverage Results" MODIFIED="1649660272237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
