@@ -3,7 +3,7 @@ import connexion
 from database import *
 from flask_bcrypt import Bcrypt
 from functools import wraps
-from flask import jsonify, request
+from flask import jsonify, request, url_for, render_template
 from flask_jwt import jwt
 
 
@@ -39,3 +39,12 @@ bcrypt = Bcrypt(app.app)
 app.add_api("swagger.yaml", strict_validation=True)
 
 flask_app = app.app
+
+
+@flask_app.route('/', methods=['GET', 'POST'])
+def hello():
+    return render_template('index.html')
+
+@app.route('/xhr.js')
+def xhr():
+    return render_template('xhr.js')

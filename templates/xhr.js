@@ -1,169 +1,150 @@
-let creditId, userId
+let token = null;
 
-const register = 'http://127.0.0.1:5000/register'
-const logn = 'http://127.0.0.1:5000/login'
-const postCredit = 'http://127.0.0.1:5000/credits'
-const getCredit = 'http://127.0.0.1:5000/credits'
-const postUserCredit = 'http://127.0.0.1:5000/credits_by_user/' + creditId + '/' + userId
-const getUserCredit = 'http://127.0.0.1:5000/credits_by_user'
-const deleteUserCredit = 'http://127.0.0.1:5000/credits_by_user/' + creditId + '/' + userId
-const deleteCredit = 'http://127.0.0.1:5000/credits/' + creditId
-const updateCredit = 'http://127.0.0.1:5000/credits/' + creditId
-const getUser = 'http://127.0.0.1:5000/users'
-const updateUser = 'http://127.0.0.1:5000/users'
+function sendRequest(method, url, body = null) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
 
-function reg(method, url, body=null){
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest()
+    xhr.open(method, url);
 
-        xhr.open(method, url)
+    xhr.responseType = "json";
 
-        xhr.responseType = 'json'
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-        xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        xhr.setRequestHeader('Access-Control-Allow-Headers', 'application/json');
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("x-access-tokens", token);
 
-        xhr.withCredentials = true
+    xhr.onload = () => {
+      if (xhr.status >= 400) {
+        reject(xhr.response);
+      } else {
+        resolve(xhr.response);
+      }
+    };
 
-        xhr.onload = () => {
-            if (xhr.status >= 400) {
-                reject(xhr.response)
-            }else{
-                resolve(xhr.response)
-            }
-        }
+    xhr.onerror = () => {
+      reject(xhr.response);
+    };
 
-        xhr.onerror = () => {
-            reject(xhr.response)
-        }
-
-        xhr.send(JSON.stringify(body))
-
-    })
+    xhr.send(JSON.stringify(body));
+  });
 }
 
-function logs(method, url, body){
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest()
+let userId = 133;
+let creditId = 126;
 
-        xhr.open(method, url)
-        xhr.withCredentials = true;
-        xhr.responseType = 'json'
-        xhr.setRequestHeader('Content-Type', 'application/json')
+const register = 'http://127.0.0.1:5000/register';
+const logn = 'http://127.0.0.1:5000/login';
+const Credit = 'http://127.0.0.1:5000/credits';
+const UserCredit = 'http://127.0.0.1:5000/credits_by_user';
+const User = 'http://127.0.0.1:5000/users';
 
-        xhr.onload = () => {
-            if (xhr.status >= 400) {
-                reject(xhr.response)
-            }else{
-                resolve(xhr.response)
-            }
-        }
+const user = {
+  username: "oleksiy",
+  password: "1234567890",
+  clientName: "vstoleksiy",
+  firstName: "Oleksiy",
+  lastName: "Vasiuta",
+  status: "manager"
+};
 
-        xhr.onerror = () => {
-            reject(xhr.response)
-        }
-
-        xhr.send(JSON.stringify(body))
-
-    })
+const userupd = {
+  username: "",
+  password: "",
+  clientName: "vstoleksiy@gmail.com",
+  firstName: "Oleksii",
+  lastName: "Vasiuta",
+  status: "manager"
 }
 
-function sendRequest(method, url, body=null){
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest()
-        let token = sessionStorage.getItem('')
-        xhr.open(method, url)
+const loguser = {
+  username: "oleksiy",
+  password: "1234567890"
+};
 
-        xhr.responseType = 'json'
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-        xhr.setRequestHeader('Access-Control-Allow-Origin', '*')
-        xhr.onload = () => {
-            if (xhr.status >= 400) {
-                reject(xhr.response)
-            }else{
-                resolve(xhr.response)
-            }
-        }
-
-        xhr.onerror = () => {
-            reject(xhr.response)
-        }
-
-        xhr.send(JSON.stringify(body))
-
-    })
+const credit = {
+  loan_status: "true",
+  loan_date: "29.09",
+  loan_amount: 5500,
+  interest_rate: 25,
+  id_borrower: 0
 }
 
+const creditupd = {
+  loan_status: "true",
+  loan_date: "01.34",
+  loan_amount: 5500,
+  interest_rate: 25,
+  id_borrower: 0
+}
 
-reg('POST', register, {
-    username: 'OOOOO',
-    password: 1234567890,
-    clientName: 'vstoleksiy',
-    firstName: 'Oleksiy',
-    lastName: 'Vasiuta',
-    status: 'manager'
-}).then(data => console.log(data))
-.catch(err => console.log(err))
+const usercredit = {
+  user_id: 0,
+  credit_id: 0
+}
 
-// logs('POST', logn, {
-//     username: 'OOOOO',
-//     password: 1234567890,
-// }).then(data => console.log(data))
-// .catch(err => console.log(err))
-//
-// sendRequest('POST', postCredit, {
-//     loan_status: 'true',
-//     loan_date: '29.09',
-//     loan_amount: 5500,
-//     interest_rate: 25,
-//     id_borrower: 0
-// }).then(data => console.log(data))
-// .catch(err => console.log(err))
-//
-// sendRequest('GET', getCredit)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-//
-//
-// sendRequest('POST', postUserCredit, {
-//     user_id: 0,
-//     credit_id: 0
-// }).then(data => console.log(data))
-// .catch(err => console.log(err))
-//
-// sendRequest('GET', getUserCredit)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-//
-// sendRequest('DELETE', deleteUserCredit)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-//
-// sendRequest('DELETE', deleteCredit)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-//
-// sendRequest('PUT', updateCredit, {
-//     loan_status: 'false',
-//     loan_date: '29.09',
-//     loan_amount: 5500,
-//     interest_rate: 25,
-//     id_borrower: 0
-// }).then(data => console.log(data))
-// .catch(err => console.log(err))
-//
-// sendRequest('GET', getUser)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
-//
-// sendRequest('PUT', updateUser, {
-//     username: '',
-//     password: '',
-//     clientName: 'vstoleksiy',
-//     firstName: 'Oleksiy',
-//     lastName: 'Vasiuta',
-//     status: 'manager'
-// }).then(data => console.log(data))
-// .catch(err => console.log(err))
+sendRequest("POST", register, user)
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
+
+sendRequest("POST", logn, loguser)
+    .then((data) => {
+      token = data.token.slice(2, -1);
+      console.log(data)})
+    .catch((err) => console.log(err));
+
+setTimeout(() => {
+  sendRequest("POST", Credit, credit)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => console.log(err));
+}, 1000);
+
+setTimeout(() => {
+  sendRequest("GET", Credit)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => console.log(err));
+}, 1000);
+
+setTimeout(() => {
+  sendRequest("POST", UserCredit + '/' + creditId + '/' + userId, usercredit)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+}, 2000);
+
+setTimeout(() => {
+  sendRequest("GET", UserCredit)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+}, 2000);
+
+setTimeout(() => {
+  sendRequest("DELETE", UserCredit + '/' + creditId + '/' + userId)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+}, 2000);
+
+setTimeout(() => {
+  sendRequest("PUT", Credit + '/' + creditId, creditupd)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+}, 2000);
+
+setTimeout(() => {
+  sendRequest("DELETE", Credit + '/' + creditId)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+}, 2000);
+
+setTimeout(() => {
+  sendRequest("GET", User)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+}, 2000);
+
+setTimeout(() => {
+  sendRequest("PUT", User, userupd)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+}, 2000);
