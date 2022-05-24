@@ -1,11 +1,12 @@
 import os
 import connexion
+import flask
+from flask_cors import CORS
 from database import *
 from flask_bcrypt import Bcrypt
 from functools import wraps
 from flask import jsonify, request, url_for, render_template
 from flask_jwt import jwt
-
 
 def token_required(f):
     @wraps(f)
@@ -35,15 +36,15 @@ app = connexion.FlaskApp(
 )
 app.app.config['SECRET_KEY'] = '004f2af45d3a4e161a7dd2d17fdae47f'
 bcrypt = Bcrypt(app.app)
-
 app.add_api("swagger.yaml", strict_validation=True)
-
+CORS(app.app)
 flask_app = app.app
 
 
 @flask_app.route('/', methods=['GET', 'POST'])
 def hello():
     return render_template('index.html')
+
 
 @app.route('/xhr.js')
 def xhr():
