@@ -1,6 +1,5 @@
 import React from "react";
 
-let token = null;
 let alertnumber = 0;
 
 function alert1() {
@@ -77,7 +76,7 @@ function sendRequest(method, url, body = null) {
 
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.setRequestHeader("Accept", "application/json");
-      xhr.setRequestHeader("x-access-tokens", token);
+      xhr.setRequestHeader("x-access-tokens", localStorage.getItem('token'));
 
       xhr.onload = () => {
         if (xhr.status >= 400) {
@@ -141,9 +140,11 @@ let credit = {
   loan_status: "",
   loan_date: "",
   loan_amount: 0,
-  interest_rate: 0,
+  interest_rate: 30,
   id_borrower: 0
 }
+
+let creditarray;
 
 let creditupd = {
   /*true
@@ -184,7 +185,7 @@ function regs (){
 function logs(){
   sendRequest("POST", logn, loguser)
       .then((data) => {
-          token = data.token.slice(2, -1);
+          localStorage.setItem('token', data.token.slice(2, -1));
           console.log(data);
           alertnumber = 5;
       })
@@ -198,7 +199,7 @@ function postcredit(){
     sendRequest("POST", Credit, credit)
         .then((data) => {
           console.log(data);
-          if (token === null)
+          if (data.loan_amount === undefined)
               alertnumber = 2;
           else
               alertnumber = 5;
@@ -210,13 +211,19 @@ function postcredit(){
 }
 
 function getcredit(){
-  setTimeout(() => {
     sendRequest("GET", Credit)
         .then((data) => {
+          creditarray = data;
           console.log(data);
+          if (data[0].loan_date === undefined)
+              alertnumber = 2;
+          else
+              alertnumber = 5;
         })
-        .catch((err) => console.log(err));
-  }, 1000);
+        .catch((err) => {
+            console.log(err);
+            alertnumber = 1
+        })
 }
 
 function postusercredit(){
@@ -262,21 +269,44 @@ function deletecredit(){
 function getuser(){
   setTimeout(() => {
     sendRequest("GET", User)
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err))
-  }, 2000);
+        .then((data) => {
+            console.log(data)
+            user.username = data.username;
+            user.password = data.password;
+            user.lastName = data.lastName;
+            user.firstName = data.firstName;
+            user.clientName = data.clientName;
+            user.status = data.status;
+            userupd.status = data.status;
+            if (data.username === undefined)
+                alertnumber = 2;
+            else
+                alertnumber = 5;
+        }).catch((err) => {
+            console.log(err);
+            alertnumber = 1
+        })
+  }, 500);
 }
 
 function updateuser(){
   setTimeout(() => {
     sendRequest("PUT", User, userupd)
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err))
-  }, 2000);
+        .then((data) => {
+            console.log(data);
+            if (data.username === undefined)
+                alertnumber = 2;
+            else
+                alertnumber = 5;
+        })
+        .catch((err) => {
+            console.log(err);
+            alertnumber = 1
+        })
+  }, 1000);
 }
 
-
-export {token, creditId, userId, userupd, credit, usercredit, user,
+export {creditId, userId, userupd, credit, usercredit, user,
   creditupd, loguser, logs, alertnumber, getcredit, deletecredit, deleteusercredit,
   getuser, getusercredit, postcredit, postusercredit, regs, updatecredit, updateuser,
- sendRequest, User, UserCredit, Credit, register, logn, alert1};
+ sendRequest, User, UserCredit, Credit, register, logn, alert1, creditarray};

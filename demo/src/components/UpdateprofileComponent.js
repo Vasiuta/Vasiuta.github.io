@@ -1,25 +1,62 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import profile2 from "./static/profile2.jpeg"
-import {sendRequest, User, userupd} from "./xhr";
+import {alert1, getuser, updateuser, user, userupd} from "./xhr";
+import ReactDOM from "react-dom/client";
 
 
 function Updateprofile() {
     document.title = 'UpdateProfile Page';
 
+    const [count, setCount] = useState(0);
+
+    function func(){
+            userupd.firstName = document.getElementById("first").value;
+            userupd.lastName = document.getElementById("last").value;
+            userupd.clientName = document.getElementById("em").value;
+            setCount(count + 1);
+    }
+
+
     useEffect(() => {
         setTimeout(() => {
-            sendRequest("GET", User)
-                .then((data) => console.log(data))
-                .catch((err) => console.log(err))
-        }, 2000);
-
+            getuser()
+            }, 1200)
         setTimeout(() => {
-            sendRequest("PUT", User, userupd)
-                .then((data) => console.log(data))
-                .catch((err) => console.log(err))
-        }, 2000);
-
-    }, [])
+            const root = ReactDOM.createRoot(document.getElementById('username'));
+            root.render(
+                "UserName: " + user.username
+            );
+            const root1 = ReactDOM.createRoot(document.getElementById('email'));
+            root1.render(
+                "Email: " + user.clientName
+            );
+            const root2 = ReactDOM.createRoot(document.getElementById('firstname'));
+            root2.render(
+                "FirstName: " + user.firstName
+            );
+            const root3 = ReactDOM.createRoot(document.getElementById('lastname'));
+            root3.render(
+                "LastName: " + user.lastName
+            );
+            const root4 = ReactDOM.createRoot(document.getElementById('eror'));
+            root4.render(
+                <React.StrictMode>
+                    {alert1()}
+                </React.StrictMode>
+            );
+        }, 1800)
+        if (count > 0) {
+            updateuser()
+            setTimeout(() => {
+            const root = ReactDOM.createRoot(document.getElementById('eror'));
+            root.render(
+                <React.StrictMode>
+                    {alert1()}
+                </React.StrictMode>
+            );
+        }, 600);
+        }
+        }, [count])
 
   return (
       <React.Fragment>
@@ -40,10 +77,10 @@ function Updateprofile() {
                                       <img src={profile2} alt="Profile picture" id="prff2" className="img-thumbnail"/>
                                           <div id="upddpr">
                                               <strong>Account info</strong>
-                                              <h5>UserName: username</h5>
-                                              <h5>Email: email@gmail.com</h5>
-                                              <h5>FirstName: firstname</h5>
-                                              <h5>LastName: lastname</h5>
+                                              <h5 id="username">UserName: username</h5>
+                                              <h5 id="email">Email: email@gmail.com</h5>
+                                              <h5 id="firstname">FirstName: firstname</h5>
+                                              <h5 id="lastname">LastName: lastname</h5>
                                           </div>
                                           <hr id="hrhr"/>
                                               <form className="form-horizontal" action="/action_page.php">
@@ -51,7 +88,7 @@ function Updateprofile() {
                                                       <label className="control-label col-sm-5" htmlFor="firstname">First
                                                           Name:</label>
                                                       <div className="col-sm-7">
-                                                          <input className="form-control" id="firstname"
+                                                          <input className="form-control" id="first"
                                                                  placeholder="Enter your First Name" name="firstname"/>
                                                       </div>
                                                   </div>
@@ -59,7 +96,7 @@ function Updateprofile() {
                                                       <label className="control-label col-sm-5" htmlFor="lastname">Last
                                                           Name:</label>
                                                       <div className="col-sm-7">
-                                                          <input className="form-control" id="lastname"
+                                                          <input className="form-control" id="last"
                                                                  placeholder="Enter your Last Name" name="lastname"/>
                                                       </div>
                                                   </div>
@@ -67,13 +104,14 @@ function Updateprofile() {
                                                       <label className="control-label col-sm-5"
                                                              htmlFor="email">Email:</label>
                                                       <div className="col-sm-7">
-                                                          <input type="email" className="form-control" id="email"
+                                                          <input type="email" className="form-control" id="em"
                                                                  placeholder="Enter email" name="email"/>
                                                       </div>
                                                   </div>
                                                   <div className="form-group">
                                                       <div className="col-sm-offset-2 col-sm-7">
-                                                          <button type="submit" className="btn btn-default" id="subbtn">
+                                                          <button type="button" className="btn btn-default" id="subbtn"
+                                                          onClick={func}>
                                                               Submit
                                                           </button>
                                                       </div>
@@ -82,6 +120,7 @@ function Updateprofile() {
                                   </div>
                               </div>
                           </div>
+                      <div id="eror"> </div>
                   </div>
                   <div className="col-sm-2 sidenav">
                       <div className="well">

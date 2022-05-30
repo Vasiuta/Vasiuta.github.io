@@ -16,8 +16,7 @@ function Login() {
     useEffect(() => {
         if (count > 0) {
             logs();
-        }
-        setTimeout(() => {
+            setTimeout(() => {
             const root = ReactDOM.createRoot(document.getElementById('eror'));
             root.render(
                 <React.StrictMode>
@@ -25,6 +24,7 @@ function Login() {
                 </React.StrictMode>
             );
         }, 1000);
+        }
         }, [count])
 
   return (

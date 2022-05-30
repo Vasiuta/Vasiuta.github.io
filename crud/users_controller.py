@@ -43,9 +43,9 @@ def login_user(body: LoginSchema):
 
 @token_required
 def get_user(current_user):
-    user = db.query(Users).filter_by(idUsers=current_user.idUsers)
+    user = db.query(Users).filter_by(idUsers=current_user.idUsers).first()
 
-    return jsonify([e.as_dict() for e in user]), 200
+    return jsonify(user.as_dict()), 200
 
 
 @token_required
