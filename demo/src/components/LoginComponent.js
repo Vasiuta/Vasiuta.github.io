@@ -64,7 +64,7 @@ function Login() {
                           <div className="form-group">
                               <div className="col-sm-offset-2 col-sm-10">
                                   <form action="">
-                                  <button type="button" onClick={func} className="btn btn-default">Submit</button>
+                                  <button id="logbutton" type="button" onClick={func} className="btn btn-default">Submit</button>
                                   </form>
                               </div>
                           </div>

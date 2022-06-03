@@ -7,6 +7,8 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "jest": "^28.1.0",
+    "jest-mock": "^28.1.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
@@ -38,6 +40,21 @@
     ]
   },
   "devDependencies": {
-    "react-token-auth": "^2.3.8"
+    "chai": "^4.2.0",
+    "cheerio": "^1.0.0-rc.11",
+    "enzyme": "^3.11.0",
+    "faker": "^4.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "mocha": "^6.2.1",
+    "react-token-auth": "^2.3.8",
+    "sinon": "^7.5.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "overrides": {
+    "enzyme": {
+      "cheerio": "1.0.0.rc-3"
+    }
   }
 }
